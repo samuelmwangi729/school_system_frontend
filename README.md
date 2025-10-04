@@ -55,3 +55,86 @@ school-management-system/
 ├── tsconfig.json        # TypeScript configuration
 ├── package.json         # Dependencies & scripts
 └── README.md
+```
+
+
+
+## ⚙️ Getting Started
+```Prerequisites
+
+Ensure you have the following installed:
+
+```Node.js(>= 18.x)
+
+npm or Yarn
+```
+
+# Installation
+
+```
+Clone the repository:
+
+git clone https://github.com/yourusername/school-management-system.git
+cd school-management-system
+
+```
+# Install dependencies:
+
+```npm install
+# or
+yarn install
+
+```
+# Run the development server:
+
+```npm run dev
+# or
+yarn dev
+```
+
+Open your browser and visit:
+
+http://localhost:5173
+
+# 🧑‍💻 Scope 
+```
+- Admin: Manage teachers, students, classes, and announcements.
+
+- Teacher: Assign homework, upload marks, and manage classes.
+
+- Student: View timetable, assignments, and results.
+
+- Parent: Track student performance and communicate with teachers.
+
+```
+
+
+
+# 🛡️ Security
+
+- Role-based access control (RBAC)
+
+- Input validation and error handling
+
+- Protected routes for sensitive pages
+
+# Secure authentication with JWT/session
+
+- 📈 Roadmap / Future Enhancements
+
+- 📱 Mobile app support (React Native)
+
+- 🏦 Fee & Payment integration
+
+- 📧 Email/SMS notifications
+
+- 🤖 AI-based student performance analytics
+
+# 🤝 Contributing
+
+Contributing is restricted as at now. After the project is completed, then its open to contribute or add any feature as you wish
+
+# 📜 License
+
+This project is licensed under the MIT License 
+
