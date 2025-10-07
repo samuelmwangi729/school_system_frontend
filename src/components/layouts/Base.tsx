@@ -4,7 +4,7 @@ import Footer from "../navigation/Footer";
 
 const Base: React.FC = () => {
   return (
-    <div className="bg-gray-100">
+    <div>
       <Header />
       <main className="min-h-screen">
         <Outlet />
