@@ -1,10 +1,12 @@
 import React from "react";
 import Hero from "../partials/Hero";
+import Why from "../partials/Why";
 
 const Home: React.FC = () => {
-  return <div>
+  return <section>
     <Hero/>
-  </div>;
+    <Why/>
+  </section>;
 };
 
 export default Home;

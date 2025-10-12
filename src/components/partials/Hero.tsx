@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Hero: React.FC = () => {
   return (
-    <section className="flex flex-col md:flex-row justify-between items-center md:gap-6 bg-white px-6 md:h-[70vh] py-10">
+    <section className="flex flex-col md:flex-row justify-between items-center md:gap-6 bg-white px-6 md:h-[75vh] py-10">
       {/* Text Section */}
       <div className="w-full md:w-1/2">
         <div className="flex flex-col md:gap-2 gap-2 max-w-xl">

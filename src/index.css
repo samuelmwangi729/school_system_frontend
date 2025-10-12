@@ -14,4 +14,10 @@ background-color: #DFDDDD;
     color: #DFDDDD;
     font-weight: bold;
 }
+.text-primary{
+     color: #8071F2;
+}
+.text-secondary{
+     color: gold;
+}
 @import 'tailwindcss'
