@@ -1,5 +1,4 @@
 import React from 'react';
-import { FaExternalLinkAlt, FaShieldAlt, FaLaptopCode } from 'react-icons/fa';
 import erp from '../../assets/images/portfolio/erp.jpg'
 import CampusPay from '../../assets/images/portfolio/CampusPay.jpg'
 import TeacherAssist from '../../assets/images/portfolio/TeacherAssist.jpg'

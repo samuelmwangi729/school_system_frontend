@@ -1,13 +1,63 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Basic Page Setup -->
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./src/assets/images/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>school_system</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>Scholarvio | School Management System for Modern Education</title>
+    <meta name="description" content="Scholarvio is a modern school management system designed to simplify student management, attendance tracking, grading, and more for educational institutions." />
+    <meta name="keywords" content="school management system, scholarvio, student tracking, attendance software, education admin, school software, online school system" />
+    <meta name="author" content="Mwangi Samuel" />
+    <link rel="canonical" href="https://scholarvio.vercel.app/" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./src/assets/images/logo.png" />
+
+    <!-- Open Graph (Facebook, LinkedIn) -->
+    <meta property="og:title" content="Scholarvio | School Management System" />
+    <meta property="og:description" content="Manage your school operations efficiently with Scholarvio — your all-in-one education management platform." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://scholarvio.vercel.app/" />
+    <meta property="og:image" content="https://scholarvio.vercel.app/src/assets/images/logo.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Scholarvio | School Management System" />
+    <meta name="twitter:description" content="Simplify and streamline educational administration with Scholarvio." />
+    <meta name="twitter:image" content="https://scholarvio.vercel.app/src/assets/images/logo.png" />
+    <meta name="twitter:url" content="https://scholarvio.vercel.app/" />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Scholarvio",
+      "url": "https://scholarvio.vercel.app/",
+      "applicationCategory": "EducationApplication",
+      "operatingSystem": "All",
+      "description": "Scholarvio is a modern school management system for managing student records, attendance, grading, and more.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Scholarvio",
+        "url": "https://scholarvio.vercel.app/"
+      }
+    }
+    </script>
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
   </head>
   <body>
+    <noscript>
+      <strong>This application requires JavaScript to function properly. Please enable JavaScript in your browser.</strong>
+    </noscript>
+
     <div id="root"></div>
+
+    <!-- Main Script -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
