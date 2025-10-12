@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap');
 :root{
     --primary-color:#8071F2,
     --secondary-color:#2020B2
@@ -22,5 +22,10 @@ background-color: #DFDDDD;
 }
 .text-secondary{
      color: gold;
+}
+.text-inknut {
+  font-family: "Inknut Antiqua", serif;
+  font-weight: 700;
+  font-style: normal;
 }
 @import 'tailwindcss'

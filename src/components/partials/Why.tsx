@@ -10,7 +10,7 @@ const Why: React.FC = () => {
                 <h2 className='text-center font-bold text-4xl'>
                     Why <span className='text-primary'>Choose</span> Us
                 </h2>
-                <div className='w-3/4 m-auto sm:mt-5 px-5 md:w-full  grid grid-cols-1 md:grid-cols-3  gap-6 text-center mt-5'>
+                <div className='w-3/4 m-auto sm:mt-5  md:w-full  grid grid-cols-1 md:grid-cols-3  gap-6 text-center mt-5'>
                     <div className='sm:h-[40vh] bg-white rounded-xl py-8 flex flex-col items-center justify-between'>
                         <div>
                             <HiOutlineCog size={60} className='text-secondary' />

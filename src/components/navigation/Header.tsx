@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { HiMenu, HiX } from "react-icons/hi";
-
+import Logo from '../../assets/images/logo.png'
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -17,16 +17,15 @@ const Header: React.FC = () => {
     <header className="sticky top-0 z-50 w-full bg-white shadow-md">
       {/* Use relative so the dropdown stays inside header background */}
       <nav className="relative flex items-center justify-between mx-auto px-2 md:px-6 py-3">
-        {/* Logo */}
         <div>
           <NavLink
             to="/"
-            className="text-[#8071F2] font-extrabold text-xl md:text-2xl lg:text-4xl tracking-tight hover:opacity-80 transition-opacity [text-shadow:2px_2px_4px_rgba(0,0,0,0.5)]"
-            onClick={closeMenu}>
-            Scholarvio
+            className="text-[#8071F2] font-extrabold text-xl md:text-2xl lg:text-4xl tracking-tight hover:opacity-80 transition-opacity"
+            onClick={closeMenu}
+          >
+            <img src={Logo} alt="Scholarvio Logo"  />
           </NavLink>
         </div>
-
         {/* Desktop Navigation */}
         <ul className="hidden md:flex items-center gap-2 lg:gap-6 font-medium text-lg">
           <li>

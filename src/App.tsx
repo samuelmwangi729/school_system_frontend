@@ -9,6 +9,9 @@ import Portfolio from "./components/pages/Portfolio";
 import Demo from "./components/pages/Demo";
 import Register from "./components/pages/auth/Register";
 import Login from "./components/pages/auth/Login";
+import ResetPassword from "./components/pages/auth/Reset";
+import Update from "./components/pages/auth/Update";
+import Dashboard from "./components/pages/auth/Dashboard";
 const App: React.FC = () => {
   return (
     <Router>
@@ -21,8 +24,11 @@ const App: React.FC = () => {
           <Route path="contact" element={<Contact />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="reset" element={<ResetPassword />} />
+          <Route path="update/:token" element={<Update />} />
           <Route path="*" element={<NotFound />} />
         </Route>
+        <Route path="dashboard" element={<Dashboard/>}/>
       </Routes>
     </Router>
   );
