@@ -1,11 +1,17 @@
 
 :root{
     --primary-color:#8071F2,
-    --secondary-color:'black'
+    --secondary-color:#2020B2
 
 }
 body {
 font-family: 'Times New Roman', Times, serif;
 background-color: #DFDDDD;
+}
+.btn-primary{
+    background-color: #2020B2;
+    padding: 10px;
+    color: #DFDDDD;
+    font-weight: bold;
 }
 @import 'tailwindcss'
