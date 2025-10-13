@@ -12,9 +12,23 @@ import Login from "./components/pages/auth/Login";
 import ResetPassword from "./components/pages/auth/Reset";
 import Update from "./components/pages/auth/Update";
 import Dashboard from "./components/pages/auth/Dashboard";
+import { Bounce, ToastContainer } from 'react-toastify';
 const App: React.FC = () => {
   return (
     <Router>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Bounce}
+      />
       <Routes>
         <Route path="/" element={<Base />}>
           <Route index element={<Home />} />
@@ -28,7 +42,7 @@ const App: React.FC = () => {
           <Route path="update/:token" element={<Update />} />
           <Route path="*" element={<NotFound />} />
         </Route>
-        <Route path="dashboard" element={<Dashboard/>}/>
+        <Route path="dashboard" element={<Dashboard />} />
       </Routes>
     </Router>
   );
