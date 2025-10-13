@@ -27,6 +27,7 @@ const Login: React.FC = () => {
           progress: undefined,
           theme: "colored",
         });
+        console.log(data)
         reset()
         setLoading(false)
       }, 2000)
