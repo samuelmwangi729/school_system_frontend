@@ -5,7 +5,7 @@ import App from './App.tsx'
 
 //import the faro sdk 
 import { Route } from 'react-router-dom';
-import { createReactRouterV4Options, getWebInstrumentations, initializeFaro, ReactIntegration, ReactRouterVersion } from '@grafana/faro-react';
+import { createReactRouterV4Options, getWebInstrumentations, initializeFaro, ReactIntegration } from '@grafana/faro-react';
 import { TracingInstrumentation } from '@grafana/faro-web-tracing';
 
 initializeFaro({
