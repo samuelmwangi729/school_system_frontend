@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@grafana/faro-react": "^1.19.0",
+    "@grafana/faro-web-sdk": "^1.19.0",
+    "@grafana/faro-web-tracing": "^1.19.0",
     "@tailwindcss/vite": "^4.1.14",
     "axios": "^1.12.2",
     "dayjs": "^1.11.18",
