@@ -1,36 +1,40 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Basic Page Setup -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- SEO Meta Tags -->
-    <title>Scholarvio | School Management System for Modern Education</title>
-    <meta name="description" content="Scholarvio is a modern school management system designed to simplify student management, attendance tracking, grading, and more for educational institutions." />
-    <meta name="keywords" content="school management system, scholarvio, student tracking, attendance software, education admin, school software, online school system" />
-    <meta name="author" content="Mwangi Samuel" />
-    <link rel="canonical" href="https://scholarvio.vercel.app/" />
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="./src/assets/images/logo.png" />
 
-    <!-- Open Graph (Facebook, LinkedIn) -->
-    <meta property="og:title" content="Scholarvio | School Management System" />
-    <meta property="og:description" content="Manage your school operations efficiently with Scholarvio — your all-in-one education management platform." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://scholarvio.vercel.app/" />
-    <meta property="og:image" content="https://scholarvio.vercel.app/src/assets/images/logo.png" />
+<head>
+  <!-- Basic Page Setup -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Scholarvio | School Management System" />
-    <meta name="twitter:description" content="Simplify and streamline educational administration with Scholarvio." />
-    <meta name="twitter:image" content="https://scholarvio.vercel.app/src/assets/images/logo.png" />
-    <meta name="twitter:url" content="https://scholarvio.vercel.app/" />
+  <!-- SEO Meta Tags -->
+  <title>Scholarvio | School Management System for Modern Education</title>
+  <meta name="description"
+    content="Scholarvio is a modern school management system designed to simplify student management, attendance tracking, grading, and more for educational institutions." />
+  <meta name="keywords"
+    content="school management system, scholarvio, student tracking, attendance software, education admin, school software, online school system" />
+  <meta name="author" content="Mwangi Samuel" />
+  <link rel="canonical" href="https://scholarvio.vercel.app/" />
 
-    <!-- Structured Data (JSON-LD) -->
-    <script type="application/ld+json">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="./src/assets/images/logo.png" />
+
+  <!-- Open Graph (Facebook, LinkedIn) -->
+  <meta property="og:title" content="Scholarvio | School Management System" />
+  <meta property="og:description"
+    content="Manage your school operations efficiently with Scholarvio — your all-in-one education management platform." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://scholarvio.vercel.app/" />
+  <meta property="og:image" content="https://scholarvio.vercel.app/src/assets/images/logo.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Scholarvio | School Management System" />
+  <meta name="twitter:description" content="Simplify and streamline educational administration with Scholarvio." />
+  <meta name="twitter:image" content="https://scholarvio.vercel.app/src/assets/images/logo.png" />
+  <meta name="twitter:url" content="https://scholarvio.vercel.app/" />
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
@@ -46,18 +50,65 @@
       }
     }
     </script>
+  <script>
+    (function () {
+      var webSdkScript = document.createElement("script");
 
-    <!-- Robots -->
-    <meta name="robots" content="index, follow" />
-  </head>
-  <body>
-    <noscript>
-      <strong>This application requires JavaScript to function properly. Please enable JavaScript in your browser.</strong>
-    </noscript>
+      // fetch the latest 1.x.x version of the Web-SDK from the CDN
+      webSdkScript.src =
+        "https://unpkg.com/@grafana/faro-web-sdk@1/dist/bundle/faro-web-sdk.iife.js";
 
-    <div id="root"></div>
+      webSdkScript.onload = () => {
+        window.GrafanaFaroWebSdk.initializeFaro({
+          url: "https://faro-collector-prod-eu-west-2.grafana.net/collect/2b633a3d2bc30f7d166aa33a7cfe5b93",
+          app: {
+            name: "school management system",
+            version: "1.0.0",
+            environment: "production",
+          },
 
-    <!-- Main Script -->
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+        });
+
+
+        // Load instrumentations at the onLoad event of the web-SDK and after the above configuration.
+        // This is important because we need to ensure that the Web-SDK has been loaded and initialized before we add further instruments!
+        var webTracingScript = document.createElement("script");
+
+        // fetch the latest 1.x.x version of the Web Tracing package from the CDN
+        webTracingScript.src =
+          "https://unpkg.com/@grafana/faro-web-tracing@1/dist/bundle/faro-web-tracing.iife.js";
+
+        // Initialize, configure (if necessary) and add the the new instrumentation to the already loaded and configured Web-SDK.
+        webTracingScript.onload = () => {
+          window.GrafanaFaroWebSdk.faro.instrumentations.add(
+            new window.GrafanaFaroWebTracing.TracingInstrumentation()
+          );
+        };
+
+        // Append the Web Tracing script script tag to the HTML page
+        document.head.appendChild(webTracingScript);
+      };
+
+      // Append the Web-SDK script script tag to the HTML page
+      document.head.appendChild(webSdkScript);
+    })();
+  </script>
+
+
+  <!-- Robots -->
+  <meta name="robots" content="index, follow" />
+</head>
+
+<body>
+  <noscript>
+    <strong>This application requires JavaScript to function properly. Please enable JavaScript in your
+      browser.</strong>
+  </noscript>
+
+  <div id="root"></div>
+
+  <!-- Main Script -->
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>
