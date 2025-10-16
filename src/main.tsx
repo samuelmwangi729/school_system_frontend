@@ -18,13 +18,15 @@ import ResetPassword from './components/pages/auth/Reset.tsx';
 import Protect from './components/hocs/Protect.tsx';
 import { Bounce, ToastContainer } from 'react-toastify';
 import RedirectAuthenticated from './components/hocs/RedirectAuthenticated.tsx';
-import MainLayout from './components/layouts/MainLayout.tsx';
+import { PersistGate } from 'redux-persist/integration/react';
+import persistStore from 'redux-persist/es/persistStore';
+import Sidebar from './components/layouts/Sidebar.tsx';
 const router = createBrowserRouter([
   {
     element: (
-    <RedirectAuthenticated>
-      <Base />
-    </RedirectAuthenticated>
+      <RedirectAuthenticated>
+        <Base />
+      </RedirectAuthenticated>
     ),
     children: [
       {
@@ -67,7 +69,7 @@ const router = createBrowserRouter([
   }, {
     element: (
       <Protect>
-        <MainLayout />
+        <Sidebar />
       </Protect>
     ),
     children: [
@@ -79,22 +81,24 @@ const router = createBrowserRouter([
   }
 ])
 createRoot(document.getElementById('root')!).render(
-  <Provider store={store}>
-    <StrictMode>
-      <RouterProvider router={router} />
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-        transition={Bounce}
-      />
-    </StrictMode>,
-  </Provider>
+  <PersistGate loading={null} persistor={persistStore(store)}>
+    <Provider store={store}>
+      <StrictMode>
+        <RouterProvider router={router} />
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+          transition={Bounce}
+        />
+      </StrictMode>,
+    </Provider>
+  </PersistGate>
 )

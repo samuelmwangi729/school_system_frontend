@@ -42,13 +42,7 @@ const initialState: UserState = {
     loading: false,
 };
 
-// 🔐 Save tokens to localStorage
-const setTokens = (data: { refresh: string; access: string }) => {
-    Cookies.set("access_token", data.access);
-    Cookies.set("refresh_token", data.refresh);
-};
-
-// 🚀 Thunk to log in a user
+// Thunk to log in a user
 export const loginUser = createAsyncThunk<
     any, // return type
     { email: string; password: string }, // argument type
@@ -73,7 +67,19 @@ export const loginUser = createAsyncThunk<
 const userSlice = createSlice({
     name: "user",
     initialState,
-    reducers: {},
+    reducers: {
+        logoutUser: (state) => {
+            Cookies.remove('access_token')
+            Cookies.remove('refresh_token')
+            state.userDetails.first_name = null
+            state.userDetails.last_name = null
+            state.userDetails.username = null
+            state.userDetails.institution = null
+            state.userDetails.role = "student"
+            state.userDetails.user_class = null
+            state.userDetails.loggedIn = false
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(loginUser.pending, (state) => {
@@ -83,9 +89,19 @@ const userSlice = createSlice({
                 const { data } = action.payload.data;
 
                 // Save tokens to localStorage
-                setTokens(data);
                 const userData = jwtDecode<any>(data.access);
-                console.log(userData)
+                const expiresAt = new Date(userData.exp * 1000)
+                console.log(expiresAt)
+                Cookies.set('access_token', data.access, {
+                    expires: expiresAt,
+                    // secure: true,
+                    sameSite: 'Strict'
+                })
+                Cookies.set('refresh_token', data.refresh, {
+                    expires: 90,
+                    // secure: true,
+                    sameSite: 'Strict'
+                })
                 state.userDetails.first_name = userData.first_name
                 state.userDetails.last_name = userData.last_name
                 state.userDetails.username = userData.username
@@ -94,8 +110,6 @@ const userSlice = createSlice({
                 state.userDetails.user_class = userData.user_class
                 state.userDetails.loggedIn = true
                 state.loading = false;
-                console.log("after assigning")
-                console.log(state.userDetails)
             })
             .addCase(loginUser.rejected, (state) => {
                 state.loading = false;
@@ -103,9 +117,9 @@ const userSlice = createSlice({
     },
 });
 
-// 🧠 Selectors
+//  Selectors
 export const selectUserDetails = (state: RootState) => state.user.userDetails;
 export const selectAppState = (state: RootState) => state.user.loading;
-
-// 🔁 Export reducer
+export const {logoutUser} = userSlice.actions
+// Export reducer
 export default userSlice.reducer;

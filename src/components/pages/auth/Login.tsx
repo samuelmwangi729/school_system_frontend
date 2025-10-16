@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { loginUser, selectAppState } from '../../../redux/userSlice';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 
@@ -11,12 +11,16 @@ interface InputDataInterface {
 }
 
 const Login: React.FC = () => {
+  const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const loading = useAppSelector(selectAppState)
   const [showPassword, setShowPassword] = useState<boolean>(() => false)
   const { register, handleSubmit, formState: { errors }, reset } = useForm<InputDataInterface>()
   const login: SubmitHandler<any> = async (data: InputDataInterface): Promise<any> => {
-    await dispatch(loginUser(data))
+    const { payload } = await dispatch(loginUser(data))
+    if (payload.status === "success") {
+     navigate("/dashboard",{replace:true})
+    }
     reset()
   }
   const changeInputType = () => {
