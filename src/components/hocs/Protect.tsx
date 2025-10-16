@@ -1,20 +1,12 @@
 import React, { type JSX } from "react";
 import { Navigate } from "react-router-dom";
-import {  useAppSelector } from "../../redux/hooks";
-import { selectUserDetails } from "../../redux/userSlice";
-
+import Cookies from 'js-cookie'
 const Protect: React.FC<{ children: JSX.Element }> = ({ children }) => {
-  const user = useAppSelector(selectUserDetails);
-  console.log(user)
-  const { loggedIn } = useAppSelector(selectUserDetails);
-  if (!loggedIn) {
+  const token = Cookies.get('access_token') ?? null
+  console.log(token)
+  if (!token) {
     return <Navigate to="/login" replace />;
   }
-  if (loggedIn) {
-    return <Navigate to={'/login'} replace />;
-  }
-  console.log("this checks everywhere");
-
   return children;
 };
 

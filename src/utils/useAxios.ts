@@ -15,7 +15,6 @@ type ApiResponse<T = any> = {
 //add the headers in the requests
 axiosInstance.interceptors.request.use(
     (config) => {
-        console.log(token)
         if (token) {
             config.headers['Authorization'] = `Bearer ${token}`
         }

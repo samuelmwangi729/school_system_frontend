@@ -3,7 +3,7 @@ import type { RootState } from "./store";
 import { postData } from "../utils/useAxios";
 import { toast } from "react-toastify";
 import { jwtDecode } from "jwt-decode";
-
+import Cookies from "js-cookie";
 type UserRole =
     | "teacher"
     | "student"
@@ -21,7 +21,7 @@ interface UserDetails {
     institution: string | null;
     role: UserRole;
     user_class: string | null;
-    loggedIn:boolean
+    loggedIn: boolean
 }
 
 interface UserState {
@@ -37,15 +37,15 @@ const initialState: UserState = {
         institution: null,
         role: "student",
         user_class: null,
-        loggedIn:false
+        loggedIn: false
     },
     loading: false,
 };
 
 // 🔐 Save tokens to localStorage
 const setTokens = (data: { refresh: string; access: string }) => {
-    localStorage.setItem("access_token", data.access);
-    localStorage.setItem("refresh_token", data.refresh);
+    Cookies.set("access_token", data.access);
+    Cookies.set("refresh_token", data.refresh);
 };
 
 // 🚀 Thunk to log in a user
@@ -80,25 +80,22 @@ const userSlice = createSlice({
                 state.loading = true;
             })
             .addCase(loginUser.fulfilled, (state, action) => {
-                const { data } = action.payload;
+                const { data } = action.payload.data;
 
                 // Save tokens to localStorage
                 setTokens(data);
-
-                // Decode JWT to extract user info
                 const userData = jwtDecode<any>(data.access);
-
-                state.userDetails = {
-                    first_name: userData.first_name ?? null,
-                    last_name: userData.last_name ?? null,
-                    username: userData.username ?? null,
-                    institution: userData.institution ?? null,
-                    role: userData.role ?? "student",
-                    user_class: userData.user_class ?? null,
-                    loggedIn:true
-                };
-
+                console.log(userData)
+                state.userDetails.first_name = userData.first_name
+                state.userDetails.last_name = userData.last_name
+                state.userDetails.username = userData.username
+                state.userDetails.institution = userData.institution
+                state.userDetails.role = userData.role
+                state.userDetails.user_class = userData.user_class
+                state.userDetails.loggedIn = true
                 state.loading = false;
+                console.log("after assigning")
+                console.log(state.userDetails)
             })
             .addCase(loginUser.rejected, (state) => {
                 state.loading = false;

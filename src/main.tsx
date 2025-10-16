@@ -16,10 +16,16 @@ import Login from './components/pages/auth/Login.tsx';
 import Register from './components/pages/auth/Register.tsx';
 import ResetPassword from './components/pages/auth/Reset.tsx';
 import Protect from './components/hocs/Protect.tsx';
-
+import { Bounce, ToastContainer } from 'react-toastify';
+import RedirectAuthenticated from './components/hocs/RedirectAuthenticated.tsx';
+import MainLayout from './components/layouts/MainLayout.tsx';
 const router = createBrowserRouter([
   {
-    element: <Base />,
+    element: (
+    <RedirectAuthenticated>
+      <Base />
+    </RedirectAuthenticated>
+    ),
     children: [
       {
         path: '/',
@@ -61,7 +67,7 @@ const router = createBrowserRouter([
   }, {
     element: (
       <Protect>
-        <Base />
+        <MainLayout />
       </Protect>
     ),
     children: [
@@ -76,6 +82,19 @@ createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
     <StrictMode>
       <RouterProvider router={router} />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Bounce}
+      />
     </StrictMode>,
   </Provider>
 )
