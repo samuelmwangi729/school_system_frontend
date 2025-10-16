@@ -26,12 +26,6 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
 }) => {
   const parentClass =
     'flex items-center justify-between p-2 rounded-md hover:bg-gray-200 transition-colors'
-
-  const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `flex items-center space-x-3 ${
-      isActive ? 'text-blue-600 font-semibold' : 'text-gray-800'
-    }`
-
   return (
     <div className="mb-1">
       {hasChildren ? (
