@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { loginUser, selectAppState, selectUserDetails } from '../../../redux/userSlice';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 
 interface InputDataInterface {
   email: string,
@@ -10,30 +11,15 @@ interface InputDataInterface {
 }
 
 const Login: React.FC = () => {
-  const [loading, setLoading] = useState<boolean>(() => false)
+  const user = useAppSelector(selectUserDetails)
+  const dispatch = useAppDispatch()
+  const loading = useAppSelector(selectAppState)
   const [showPassword, setShowPassword] = useState<boolean>(() => false)
   const { register, handleSubmit, formState: { errors }, reset } = useForm<InputDataInterface>()
-  const login: SubmitHandler<InputDataInterface> = async (data: InputDataInterface): Promise<any> => {
-    setLoading(true)
-    await new Promise((resolve, reject) => {
-      setTimeout(() => {
-        toast.success('login successful. redirecting...', {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: false,
-          progress: undefined,
-          theme: "colored",
-        });
-        console.log(data)
-        reset()
-        setLoading(false)
-      }, 2000)
-      resolve('success')
-      reject('something went wrong')
-    })
+  const login: SubmitHandler<any> = async (data: InputDataInterface): Promise<any> => {
+    const resp = await dispatch(loginUser(data))
+    console.log(user)
+    console.log(resp)
   }
   const changeInputType = () => {
     setShowPassword(!showPassword)
@@ -41,7 +27,7 @@ const Login: React.FC = () => {
   return (
     <section className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Login</h2>
+        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Login </h2>
 
         <form className="space-y-4" onSubmit={handleSubmit(login)}>
           <div>
