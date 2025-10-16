@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import { loginUser, selectAppState, selectUserDetails } from '../../../redux/userSlice';
+import { loginUser, selectAppState } from '../../../redux/userSlice';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 
 interface InputDataInterface {
@@ -11,15 +11,13 @@ interface InputDataInterface {
 }
 
 const Login: React.FC = () => {
-  const user = useAppSelector(selectUserDetails)
   const dispatch = useAppDispatch()
   const loading = useAppSelector(selectAppState)
   const [showPassword, setShowPassword] = useState<boolean>(() => false)
   const { register, handleSubmit, formState: { errors }, reset } = useForm<InputDataInterface>()
   const login: SubmitHandler<any> = async (data: InputDataInterface): Promise<any> => {
-    const resp = await dispatch(loginUser(data))
-    console.log(user)
-    console.log(resp)
+    await dispatch(loginUser(data))
+    reset()
   }
   const changeInputType = () => {
     setShowPassword(!showPassword)
