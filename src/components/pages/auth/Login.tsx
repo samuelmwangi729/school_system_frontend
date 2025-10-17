@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import { Link, useNavigate } from 'react-router-dom';
-import { loginUser, logoutUser, selectAppState } from '../../../redux/userSlice';
+import { loginUser, selectAppState } from '../../../redux/userSlice';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 
 interface InputDataInterface {
