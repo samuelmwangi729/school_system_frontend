@@ -14,7 +14,6 @@ const backendUrl: string =
 export const axiosInstance = axios.create({
   baseURL: backendUrl,
 });
-
 axiosInstance.interceptors.request.use(
   async (req) => {
     const accessToken: any = Cookies.get('access_token');
@@ -66,8 +65,9 @@ export const postData = async <T = any>(
   url: string,
   body: any
 ): Promise<ApiResponse<T>> => {
+  const fullUrl = `${backendUrl}${url}`
   try {
-    const response = await axiosInstance.post(url, body);
+    const response = await axiosInstance.post(fullUrl, body);
     return {
       status: 'success',
       message: response.data.message,
@@ -88,8 +88,9 @@ export const putData = async <T = any>(
   url: string,
   body: any
 ): Promise<ApiResponse<T>> => {
+  const fullUrl = `${backendUrl}${url}`
   try {
-    const response = await axiosInstance.put(url, body);
+    const response = await axiosInstance.put(fullUrl, body);
     return {
       status: 'success',
       message: response.data.message,
@@ -107,6 +108,7 @@ export const putData = async <T = any>(
 };
 
 export const getData = async <T = any>(url: string): Promise<T> => {
-  const response = await axiosInstance.get<T>(url);
+  const fullUrl = `${backendUrl}${url}`
+  const response = await axiosInstance.get<T>(fullUrl);
   return response.data;
 };
