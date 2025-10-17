@@ -66,7 +66,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
                 className={({ isActive }) =>
                   `block text-sm px-2 py-2 border-b text-center ${
                     isActive ? 'text-blue-600 font-medium' : 'text-gray-700'
-                  } hover:bg-gray-100 text-white font-bold  transition-colors duration-200`
+                  } hover:bg-gray-100 hover:text-black text-white font-bold  transition-colors duration-200`
                 }
               >
                 {child.label}

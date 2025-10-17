@@ -4,12 +4,13 @@ import { toast } from 'react-toastify';
 import { useAppSelector } from '../../../../redux/hooks';
 import { selectUserDetails } from '../../../../redux/userSlice';
 
+export type statusTypes  = 'active' | 'suspended' | 'deleted'
 type ExamType = {
   id: number;
   institution: string;
   created_by: string;
   exam_name: string;
-  exam_status: 'active' | 'suspended' | 'deleted';
+  exam_status: statusTypes;
 };
 
 const Examinations: React.FC = () => {

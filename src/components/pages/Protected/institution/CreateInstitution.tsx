@@ -17,26 +17,25 @@ const CreateInstitution: React.FC = () => {
     register,
     formState: { errors },
     handleSubmit,
-    reset,setError
+    reset, setError
   } = useForm<InstitutionType>()
 
   const addInstitution: SubmitHandler<InstitutionType> = async (data) => {
     //post the data to the backend
-    const response = await postData("/institutions",data)
-    console.log(response)
-    if(response.status==="success"){
+    const response = await postData("/institutions", data)
+    if (response.status === "success") {
       toast.success(response.message)
       reset()
     }
     if (response?.status === "error" && response.message) {
-          Object.entries(response.message).forEach(([field, messages]:[field:any,messages:any]) => {
-            messages.forEach((msg:any) => {
-              setError(field,{type:"server",message:msg})
-              toast.error(`${field}: ${msg}`);
-            });
-          });
-        }
-    
+      Object.entries(response.message).forEach(([field, messages]: [field: any, messages: any]) => {
+        messages.forEach((msg: any) => {
+          setError(field, { type: "server", message: msg })
+          toast.error(`${field}: ${msg}`);
+        });
+      });
+    }
+
   }
 
   return (

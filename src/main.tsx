@@ -26,6 +26,16 @@ import Institutions from './components/pages/Protected/institution/Institutions.
 import Institution from './components/pages/Protected/institution/Institution.tsx';
 import Examinations from './components/pages/Protected/Examinations/Examinations.tsx';
 import Create from './components/pages/Protected/Examinations/Create.tsx';
+import Subjects from './components/pages/Protected/Subjects/Subjects.tsx';
+import CreateSubject from './components/pages/Protected/Subjects/CreateSubject.tsx';
+import Classes from './components/pages/Protected/InstitutionClasses/Classes.tsx';
+import CreateClasses from './components/pages/Protected/InstitutionClasses/CreateClasses.tsx';
+import Teachers from './components/pages/Protected/Teachers/Teachers.tsx';
+import AddTeachers from './components/pages/Protected/Teachers/AddTeachers.tsx';
+import Profile from './components/pages/Protected/Profile.tsx';
+import Bulk from './components/pages/Protected/Students/Bulk.tsx';
+import Student from './components/pages/Protected/Students/Student.tsx';
+import Students from './components/pages/Protected/Students/Students.tsx';
 const router = createBrowserRouter([
   {
     element: (
@@ -101,6 +111,46 @@ const router = createBrowserRouter([
       {
         path:'exam/create',
         element:<Create/>
+      },
+      {
+        path:'subjects',
+        element:<Subjects/>
+      },
+      {
+        path:'subject/create',
+        element:<CreateSubject/>
+      },
+      {
+        path:'classes',
+        element:<Classes/>
+      },
+      {
+        path:'classes/create',
+        element:<CreateClasses/>
+      },
+      {
+        path:'teachers',
+        element:<Teachers/>
+      },
+      {
+        path:'teachers/add',
+        element:<AddTeachers/>
+      },
+      {
+        path:'profile',
+        element:<Profile/>
+      },
+      {
+        path:'students',
+        element:<Students/>
+      },
+      {
+        path:'student/add',
+        element:<Student/>
+      },
+      {
+        path:'students/add/bulk',
+        element:<Bulk/>
       },
     ]
   }

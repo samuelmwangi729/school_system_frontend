@@ -78,7 +78,7 @@ export const postData = async <T = any>(
   try {
     const response = await axiosInstance.post(url, body);
     return {
-      status: 'success',
+      status: response.data.status,
       message: response.data.message,
       data: response.data.data ?? response.data,
     };
