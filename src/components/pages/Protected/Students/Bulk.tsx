@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Bulk = () => {
+const Bulk:React.FC = () => {
   return (
     <div>
       Add bulk students here
