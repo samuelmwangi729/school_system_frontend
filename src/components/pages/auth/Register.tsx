@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
+import { registerUser, selectAppState } from '../../../redux/userSlice';
 import { toast } from 'react-toastify';
 
 type RegisterDetails = {
@@ -15,10 +17,13 @@ type RegisterDetails = {
 };
 
 const Register: React.FC = () => {
+  const dispatch = useAppDispatch()
+  const loading = useAppSelector(selectAppState)
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
-    formState: { errors }, reset
+    formState: { errors }, reset,setError
   } = useForm<RegisterDetails>();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -30,19 +35,19 @@ const Register: React.FC = () => {
       class_code: 'grd-10',
     };
 
-    console.log('Submitted Data:', finalData);
-    toast.success('registration successful. redirecting...', {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: true,
-      draggable: false,
-      progress: undefined,
-      theme: "colored",
-    });
-    // Handle API submission here
-    reset()
+    const { payload } = await dispatch(registerUser(finalData))
+    if (payload?.status === "success") {
+      reset()
+      navigate("/login", { replace: true })
+    }
+    if (payload?.status === "error" && payload.message) {
+      Object.entries(payload.message).forEach(([field, messages]:[field:any,messages:any]) => {
+        messages.forEach((msg:any) => {
+          setError(field,{type:"server",message:msg})
+          toast.error(`${field}: ${msg}`);
+        });
+      });
+    }
   };
 
   return (
@@ -60,7 +65,7 @@ const Register: React.FC = () => {
               <input
                 type="text"
                 {...register('first_name', { required: 'First name is required' })}
-                className={`w-full px-4 py-2 ${errors.first_name?'border border-red-300':'border'} rounded-md focus:outline-none focus:ring-2 focus:ring-primary`}
+                className={`w-full px-4 py-2 ${errors.first_name ? 'border border-red-300' : 'border'} rounded-md focus:outline-none focus:ring-2 focus:ring-primary`}
               />
               {errors.first_name && (
                 <div className="mt-2 rounded-md bg-red-100 border border-red-400 text-red-700 px-4 py-3 text-sm">
@@ -75,7 +80,7 @@ const Register: React.FC = () => {
               <input
                 type="text"
                 {...register('last_name', { required: 'Last name is required' })}
-                className={`w-full px-4 py-2 ${errors.last_name?'border border-red-300':'border'} rounded-md focus:outline-none focus:ring-2 focus:ring-primary`}
+                className={`w-full px-4 py-2 ${errors.last_name ? 'border border-red-300' : 'border'} rounded-md focus:outline-none focus:ring-2 focus:ring-primary`}
               />
               {errors.last_name && (
                 <div className="mt-2 rounded-md bg-red-100 border border-red-400 text-red-700 px-4 py-3 text-sm">
@@ -91,12 +96,12 @@ const Register: React.FC = () => {
             <input
               type="text"
               {...register('username', { required: 'Username is required' })}
-              className={`w-full px-4 py-2 ${errors.username?'border border-red-300':'border'} rounded-md focus:outline-none focus:ring-2 focus:ring-primary`}
+              className={`w-full px-4 py-2 ${errors.username ? 'border border-red-300' : 'border'} rounded-md focus:outline-none focus:ring-2 focus:ring-primary`}
             />
             {errors.username && (
               <div className="mt-2 rounded-md bg-red-100 border border-red-400 text-red-700 px-4 py-3 text-sm">
-                  <strong className="font-semibold">Error:</strong> userrname is required.
-                </div>
+                <strong className="font-semibold">Error:</strong> {errors.username.message}
+              </div>
             )}
           </div>
 
@@ -112,12 +117,12 @@ const Register: React.FC = () => {
                   message: 'Invalid email address',
                 },
               })}
-              className={`w-full px-4 py-2 ${errors.email?'border border-red-300':'border'} rounded-md focus:outline-none focus:ring-2 focus:ring-primary`}
+              className={`w-full px-4 py-2 ${errors.email ? 'border border-red-300' : 'border'} rounded-md focus:outline-none focus:ring-2 focus:ring-primary`}
             />
             {errors.email && (
               <div className="mt-2 rounded-md bg-red-100 border border-red-400 text-red-700 px-4 py-3 text-sm">
-                  <strong className="font-semibold">Error:</strong> {errors.email.message}.
-                </div>
+                <strong className="font-semibold">Error:</strong> {errors.email.message}.
+              </div>
             )}
           </div>
           {/* Password with Show/Hide */}
@@ -133,7 +138,7 @@ const Register: React.FC = () => {
                     message: 'Password must be at least 6 characters',
                   },
                 })}
-                className={`w-full px-4 py-2 pr-10 ${errors.password?'border border-red-300':'border'} rounded-md focus:outline-none focus:ring-2 focus:ring-primary`}
+                className={`w-full px-4 py-2 pr-10 ${errors.password ? 'border border-red-300' : 'border'} rounded-md focus:outline-none focus:ring-2 focus:ring-primary`}
               />
               <button
                 type="button"
@@ -152,8 +157,8 @@ const Register: React.FC = () => {
             </div>
             {errors.password && (
               <div className="mt-2 rounded-md bg-red-100 border border-red-400 text-red-700 px-4 py-3 text-sm">
-                  <strong className="font-semibold">Error:</strong> {errors.password.message}.
-                </div>
+                <strong className="font-semibold">Error:</strong> {errors.password.message}.
+              </div>
             )}
           </div>
 
@@ -162,7 +167,7 @@ const Register: React.FC = () => {
             type="submit"
             className="w-full bg-primary text-white py-2 rounded-md transition duration-300"
           >
-            Register
+            {loading ? 'Please wait...' : 'Register'}
           </button>
         </form>
 

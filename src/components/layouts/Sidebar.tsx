@@ -8,39 +8,42 @@ import {
 import { motion } from 'framer-motion'
 import SidebarItem from './SidebarItem'
 import { Outlet, useNavigate } from 'react-router-dom'
-import { useAppSelector } from '../../redux/hooks'
-import { selectUserDetails } from '../../redux/userSlice'
+import { useAppDispatch, useAppSelector } from '../../redux/hooks'
+import { logoutUser, selectUserDetails } from '../../redux/userSlice'
+import persistStore from 'redux-persist/es/persistStore'
+import store from '../../redux/store'
+import { BsBuilding } from 'react-icons/bs'
 
 const Sidebar: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true)
   const [openMenus, setOpenMenus] = useState<Record<string, boolean>>({})
   const user = useAppSelector(selectUserDetails)
   const navigate = useNavigate()
-
+  const dispatch = useAppDispatch()
   const toggleSidebar = () => setIsSidebarOpen(prev => !prev)
   const toggleMenu = (key: string) => {
     setOpenMenus(prev => ({ ...prev, [key]: !prev[key] }))
   }
 
   const handleLogout = () => {
-    // Clear cookies or tokens here
-    // Redirect to login
+    persistStore(store).purge() // clears persisted state
+    dispatch(logoutUser())
     navigate('/login')
   }
 
   return (
-    <div className="flex h-[99vh]">
+    <div className="flex h-[100vh]">
       {/* Sidebar */}
       <motion.div
         animate={{ width: isSidebarOpen ? 250 : 60 }}
-        className="bg-blue-900 text-white shadow-md transition-all duration-300 flex flex-col justify-between overflow-hidden"
+        className="bg-primary text-white shadow-md transition-all duration-300 flex flex-col justify-between overflow-hidden"
       >
         {/* Top Section */}
         <div className="flex flex-col flex-1 overflow-hidden">
           <div className="flex items-center justify-between p-4 border-b border-blue-700">
             {isSidebarOpen && (
               <h2 className="text-lg font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
-                {user.first_name} {user.last_name}
+                {user?.first_name} {user?.last_name}
               </h2>
             )}
             <button onClick={toggleSidebar}>
@@ -55,7 +58,18 @@ const Sidebar: React.FC = () => {
               to="/"
               isSidebarOpen={isSidebarOpen}
             />
-
+            <SidebarItem
+              icon={<BsBuilding/>}
+              label="Institutions"
+              isSidebarOpen={isSidebarOpen}
+              hasChildren
+              isExpanded={openMenus['institution']}
+              onToggle={() => toggleMenu('institution')}
+              childrenItems={[
+                { label: 'Create Institution', to: 'institution/create' },
+                { label: 'View Institutions', to: '/institutions' },
+              ]}
+            />
             <SidebarItem
               icon={<FaUser />}
               label="User Management"
@@ -105,7 +119,7 @@ const Sidebar: React.FC = () => {
 
           <div className="flex items-center gap-4">
             <span className="text-sm text-gray-600">
-              {user.first_name} {user.last_name}
+              {user?.first_name} {user?.last_name}
             </span>
             <button
               onClick={() => navigate('/profile')}

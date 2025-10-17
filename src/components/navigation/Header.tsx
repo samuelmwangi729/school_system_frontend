@@ -57,7 +57,7 @@ const Header: React.FC = () => {
               Contact
             </NavLink>
           </li>
-          {user.loggedIn ? (
+          {user?.loggedIn ? (
             <>
               <li>
                 <NavLink to="/dashboard" className={navLinkClass}>

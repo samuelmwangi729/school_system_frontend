@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { RootState } from "./store";
-import { postData } from "../utils/useAxios";
 import { toast } from "react-toastify";
 import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
+import { plainRequest } from "../utils/PlainRequest";
 type UserRole =
     | "teacher"
     | "student"
@@ -49,7 +49,7 @@ export const loginUser = createAsyncThunk<
     { rejectValue: string } // error type
 >("login/user", async (userData, { rejectWithValue }) => {
     try {
-        const resp = await postData("/login", userData);
+        const resp = await plainRequest("/login", userData);
 
         if (resp.status === "success") {
             toast.success(resp.message);
@@ -63,7 +63,20 @@ export const loginUser = createAsyncThunk<
         return rejectWithValue(error.message || "Unexpected error");
     }
 });
-
+export const registerUser = createAsyncThunk("/register/user",async(registerData:any)=>{
+    try {
+        const resp = await plainRequest("/register", registerData);
+        if (resp.status === "success") {
+            toast.success(resp.message);
+        } else {
+            toast.error(resp.message);
+        }
+        return resp;
+    } catch (error: any) {
+        toast.error("Registration error: " + error.message);
+        return error.message
+    }
+})
 const userSlice = createSlice({
     name: "user",
     initialState,
@@ -90,10 +103,7 @@ const userSlice = createSlice({
 
                 // Save tokens to localStorage
                 const userData = jwtDecode<any>(data.access);
-                const expiresAt = new Date(userData.exp * 1000)
-                console.log(expiresAt)
                 Cookies.set('access_token', data.access, {
-                    expires: expiresAt,
                     // secure: true,
                     sameSite: 'Strict'
                 })
@@ -102,7 +112,7 @@ const userSlice = createSlice({
                     // secure: true,
                     sameSite: 'Strict'
                 })
-                state.userDetails.first_name = userData.first_name
+                state.userDetails.first_name = userData?.first_name
                 state.userDetails.last_name = userData.last_name
                 state.userDetails.username = userData.username
                 state.userDetails.institution = userData.institution
@@ -113,13 +123,22 @@ const userSlice = createSlice({
             })
             .addCase(loginUser.rejected, (state) => {
                 state.loading = false;
-            });
+            })
+            .addCase(registerUser.pending,(state)=>{
+                state.loading = true
+            })
+            .addCase(registerUser.fulfilled,(state,action)=>{
+                state.loading = false
+            })
+            .addCase(registerUser.rejected,(state)=>{
+                state.loading = false
+            })
     },
 });
 
 //  Selectors
 export const selectUserDetails = (state: RootState) => state.user.userDetails;
 export const selectAppState = (state: RootState) => state.user.loading;
-export const {logoutUser} = userSlice.actions
+export const { logoutUser } = userSlice.actions
 // Export reducer
 export default userSlice.reducer;

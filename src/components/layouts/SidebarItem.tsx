@@ -25,14 +25,12 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
   childrenItems = [],
 }) => {
   const parentClass =
-    'flex items-center justify-between p-2 rounded-md hover:bg-gray-200 transition-colors'
+    'flex items-center justify-between p-2 rounded-md hover:bg-gray-600 transition-colors'
+
   return (
     <div className="mb-1">
       {hasChildren ? (
-        <div
-          className={`${parentClass} cursor-pointer`}
-          onClick={onToggle}
-        >
+        <div className={`${parentClass} cursor-pointer`} onClick={onToggle}>
           <div className="flex items-center space-x-3">
             <span className="text-lg">{icon}</span>
             {isSidebarOpen && <span className="text-sm font-medium">{label}</span>}
@@ -66,9 +64,9 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
                 key={index}
                 to={child.to}
                 className={({ isActive }) =>
-                  `block py-1 text-sm ${
+                  `block text-sm px-2 py-2 border-b text-center ${
                     isActive ? 'text-blue-600 font-medium' : 'text-gray-700'
-                  } hover:underline`
+                  } hover:bg-gray-100 text-white font-bold  transition-colors duration-200`
                 }
               >
                 {child.label}

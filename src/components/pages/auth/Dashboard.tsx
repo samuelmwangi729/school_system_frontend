@@ -1,11 +1,8 @@
 import React from "react";
-import { useAppSelector } from "../../../redux/hooks";
-import { selectUserDetails } from "../../../redux/userSlice";
+import View from "../Protected/View";
 
 const Dashboard: React.FC = () => {
-  const user = useAppSelector(selectUserDetails)
-  console.log(user)
-  return <div>Dashboard</div>;
+  return <View/>
 };
 
 export default Dashboard;

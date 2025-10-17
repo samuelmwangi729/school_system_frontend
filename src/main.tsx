@@ -21,6 +21,9 @@ import RedirectAuthenticated from './components/hocs/RedirectAuthenticated.tsx';
 import { PersistGate } from 'redux-persist/integration/react';
 import persistStore from 'redux-persist/es/persistStore';
 import Sidebar from './components/layouts/Sidebar.tsx';
+import CreateInstitution from './components/pages/Protected/institution/CreateInstitution.tsx';
+import Institutions from './components/pages/Protected/institution/Institutions.tsx';
+import Institution from './components/pages/Protected/institution/Institution.tsx';
 const router = createBrowserRouter([
   {
     element: (
@@ -76,7 +79,19 @@ const router = createBrowserRouter([
       {
         path: 'dashboard',
         element: <Dashboard />
-      }
+      },
+      {
+        path:'institution/create',
+        element:<CreateInstitution/>
+      },
+      {
+        path:'institutions',
+        element:<Institutions/>
+      },
+      {
+        path:'institution/single/:institution',
+        element:<Institution/>
+      },
     ]
   }
 ])
@@ -98,7 +113,7 @@ createRoot(document.getElementById('root')!).render(
           theme="colored"
           transition={Bounce}
         />
-      </StrictMode>,
+      </StrictMode>
     </Provider>
   </PersistGate>
 )

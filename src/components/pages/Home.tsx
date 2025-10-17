@@ -10,7 +10,7 @@ const Home: React.FC = () => {
     <Why/>
     <Features/>
     <CTA/>
-  </section>;
+  </section>
 };
 
 export default Home;
