@@ -11,6 +11,7 @@ type ApiResponse<T = any> = {
 export const plainRequest = async <T = any>(url: string, body: any): Promise<ApiResponse<T>> => {
   try {
     const response = await axiosInstance.post(url, body);
+    console.log(response)
     return {
       status: response.data.status,
       message: response.data.message,
