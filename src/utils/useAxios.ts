@@ -11,28 +11,40 @@ const backendUrl: string =
     ? import.meta.env.VITE_PROD_ENDPOINT
     : import.meta.env.VITE_DEV_ENDPOINT;
 
+const accessToken = Cookies.get('access_token');
+
 export const axiosInstance = axios.create({
   baseURL: backendUrl,
+  headers: {
+    Authorization: accessToken ? `Bearer ${accessToken}` : '',
+  },
 });
+
 axiosInstance.interceptors.request.use(
   async (req) => {
-    const accessToken: any = Cookies.get('access_token');
+    const accessToken = Cookies.get('access_token');
     const refreshToken = Cookies.get('refresh_token');
-    try {
-      const decoded = jwtDecode<{ exp: number }>(accessToken);
-      const isExpired = dayjs.unix(decoded.exp).diff(dayjs()) < 1;
-      if (!isExpired) {
-        req.headers.Authorization = `Bearer ${accessToken}`;
-        return req;
+
+    if (accessToken) {
+      try {
+        const decoded = jwtDecode<{ exp: number }>(accessToken);
+        const isExpired = dayjs.unix(decoded.exp).diff(dayjs()) < 1;
+
+        if (!isExpired) {
+          req.headers.Authorization = `Bearer ${accessToken}`;
+          return req;
+        }
+      } catch {
+        console.warn('Failed to decode access token');
       }
-    } catch (err) {
-      console.warn('access token expired');
     }
 
+    // Try refresh
     try {
       const { data } = await axios.post(`${backendUrl}/token/refresh`, {
         refresh: refreshToken,
       });
+
       Cookies.set('access_token', data.access);
       Cookies.set('refresh_token', data.refresh);
 
@@ -43,54 +55,28 @@ axiosInstance.interceptors.request.use(
       store.dispatch(logoutUser());
       Cookies.remove('access_token');
       Cookies.remove('refresh_token');
-    }
 
-    return req;
+      return Promise.reject(err);
+    }
   },
   (error) => Promise.reject(error)
 );
 
-// ✅ Generic API Response Type
+// ================================
+// ✅ API METHODS
+// ================================
 type ApiResponse<T = any> = {
   status: 'success' | 'error';
   message: string;
   data?: T;
 };
 
-//
-// ✅ Utility Methods
-//
-
 export const postData = async <T = any>(
   url: string,
   body: any
 ): Promise<ApiResponse<T>> => {
-  const fullUrl = `${backendUrl}${url}`
   try {
-    const response = await axiosInstance.post(fullUrl, body);
-    return {
-      status: 'success',
-      message: response.data.message,
-      data: response.data.data ?? response.data,
-    };
-  } catch (err: any) {
-    return {
-      status: 'error',
-      message:
-        err?.response?.data ||
-        err?.response?.data?.errors ||
-        'Unknown error',
-    };
-  }
-};
-
-export const putData = async <T = any>(
-  url: string,
-  body: any
-): Promise<ApiResponse<T>> => {
-  const fullUrl = `${backendUrl}${url}`
-  try {
-    const response = await axiosInstance.put(fullUrl, body);
+    const response = await axiosInstance.post(url, body);
     return {
       status: 'success',
       message: response.data.message,
@@ -101,14 +87,37 @@ export const putData = async <T = any>(
       status: 'error',
       message:
         err?.response?.data?.message ||
-        err?.response?.data?.errors ||
+        err?.response?.data?.errors?.[0] ||
+        JSON.stringify(err?.response?.data) ||
+        'Unknown error',
+    };
+  }
+};
+
+export const putData = async <T = any>(
+  url: string,
+  body: any
+): Promise<ApiResponse<T>> => {
+  try {
+    const response = await axiosInstance.put(url, body);
+    return {
+      status: 'success',
+      message: response.data.message,
+      data: response.data.data ?? response.data,
+    };
+  } catch (err: any) {
+    return {
+      status: 'error',
+      message:
+        err?.response?.data?.message ||
+        err?.response?.data?.errors?.[0] ||
+        JSON.stringify(err?.response?.data) ||
         'Unknown error',
     };
   }
 };
 
 export const getData = async <T = any>(url: string): Promise<T> => {
-  const fullUrl = `${backendUrl}${url}`
-  const response = await axiosInstance.get<T>(fullUrl);
+  const response = await axiosInstance.get<T>(url);
   return response.data;
 };
