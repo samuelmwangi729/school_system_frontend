@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useForm, type SubmitHandler } from 'react-hook-form'
-import { postData, putData } from '../../../../utils/useAxios'
+import { putData } from '../../../../utils/useAxios'
 import { toast } from 'react-toastify'
 
 type InstitutionType = {
@@ -23,7 +23,6 @@ const Institution: React.FC<InstitutionProps> = ({ initialData, onSuccess }) => 
     formState: { errors },
     handleSubmit,
     reset,
-    setError,
   } = useForm<InstitutionType>()
 
   useEffect(() => {
