@@ -1,5 +1,5 @@
 import axios from "axios";
-const backendUrl: string = import.meta.env.VITE_APP_ENV === "production" ? import.meta.env.VITE_PROD_ENDPOIT : import.meta.env.VITE_DEV_ENDPOINT
+const backendUrl: string = import.meta.env.VITE_APP_ENV === "production" ? import.meta.env.VITE_PROD_ENDPOINT : import.meta.env.VITE_DEV_ENDPOINT
 export const axiosInstance = axios.create({
   baseURL: backendUrl,
 })
