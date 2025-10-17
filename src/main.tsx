@@ -24,6 +24,8 @@ import Sidebar from './components/layouts/Sidebar.tsx';
 import CreateInstitution from './components/pages/Protected/institution/CreateInstitution.tsx';
 import Institutions from './components/pages/Protected/institution/Institutions.tsx';
 import Institution from './components/pages/Protected/institution/Institution.tsx';
+import Examinations from './components/pages/Protected/Examinations/Examinations.tsx';
+import Create from './components/pages/Protected/Examinations/Create.tsx';
 const router = createBrowserRouter([
   {
     element: (
@@ -91,6 +93,14 @@ const router = createBrowserRouter([
       {
         path:'institution/single/:institution',
         element:<Institution/>
+      },
+      {
+        path:'examinations',
+        element:<Examinations/>
+      },
+      {
+        path:'exam/create',
+        element:<Create/>
       },
     ]
   }

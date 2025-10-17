@@ -32,7 +32,7 @@ const Register: React.FC = () => {
     const finalData: RegisterDetails = {
       ...data,
       institution_name: 'None',
-      class_code: 'grd-10',
+      class_code: 'None',
     };
 
     const { payload } = await dispatch(registerUser(finalData))

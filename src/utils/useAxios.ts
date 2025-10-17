@@ -6,60 +6,44 @@ import { persistStore } from 'redux-persist';
 import store from '../redux/store';
 import { logoutUser } from '../redux/userSlice';
 
-// ✅ Set your backend URL based on environment
 const backendUrl: string =
   import.meta.env.VITE_APP_ENV === 'production'
     ? import.meta.env.VITE_PROD_ENDPOINT
     : import.meta.env.VITE_DEV_ENDPOINT;
 
-// ✅ Create Axios instance without preset token
 export const axiosInstance = axios.create({
   baseURL: backendUrl,
 });
 
-// ✅ Axios request interceptor for refreshing expired JWT tokens
 axiosInstance.interceptors.request.use(
   async (req) => {
-    const accessToken = Cookies.get('access_token');
+    const accessToken: any = Cookies.get('access_token');
     const refreshToken = Cookies.get('refresh_token');
-
-    if (accessToken) {
-      try {
-        const decoded = jwtDecode<{ exp: number }>(accessToken);
-        const isExpired = dayjs.unix(decoded.exp).diff(dayjs()) < 1;
-
-        if (!isExpired) {
-          req.headers.Authorization = `Bearer ${accessToken}`;
-          return req;
-        }
-      } catch (err) {
-        console.warn('Invalid or malformed access token');
+    try {
+      const decoded = jwtDecode<{ exp: number }>(accessToken);
+      const isExpired = dayjs.unix(decoded.exp).diff(dayjs()) < 1;
+      if (!isExpired) {
+        req.headers.Authorization = `Bearer ${accessToken}`;
+        return req;
       }
+    } catch (err) {
+      console.warn('access token expired');
     }
 
-    // 🛠 Refresh access token if expired or missing
-    if (refreshToken) {
-      try {
-        const { data } = await axios.post(`${backendUrl}/token/refresh/`, {
-          refresh: refreshToken,
-        });
+    try {
+      const { data } = await axios.post(`${backendUrl}/token/refresh`, {
+        refresh: refreshToken,
+      });
+      Cookies.set('access_token', data.access);
+      Cookies.set('refresh_token', data.refresh);
 
-        // ✅ Store new tokens
-        Cookies.set('access_token', data.access, { secure: true });
-        Cookies.set('refresh_token', data.refresh, { secure: true });
-
-        // ✅ Attach new token to original request
-        req.headers.Authorization = `Bearer ${data.access}`;
-        return req;
-      } catch (err) {
-        console.error('Token refresh failed:', err);
-
-        // ❌ Cleanup on refresh failure
-        persistStore(store).purge();
-        store.dispatch(logoutUser());
-        Cookies.remove('access_token');
-        Cookies.remove('refresh_token');
-      }
+      req.headers.Authorization = `Bearer ${data.access}`;
+      return req;
+    } catch (err) {
+      persistStore(store).purge();
+      store.dispatch(logoutUser());
+      Cookies.remove('access_token');
+      Cookies.remove('refresh_token');
     }
 
     return req;
@@ -93,7 +77,7 @@ export const postData = async <T = any>(
     return {
       status: 'error',
       message:
-        err?.response?.data?.message ||
+        err?.response?.data ||
         err?.response?.data?.errors ||
         'Unknown error',
     };

@@ -12,7 +12,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { logoutUser, selectUserDetails } from '../../redux/userSlice'
 import persistStore from 'redux-persist/es/persistStore'
 import store from '../../redux/store'
-import { BsBuilding } from 'react-icons/bs'
+import { BsBuilding, BsClipboard2Check } from 'react-icons/bs'
 
 const Sidebar: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true)
@@ -68,6 +68,18 @@ const Sidebar: React.FC = () => {
               childrenItems={[
                 { label: 'Create Institution', to: 'institution/create' },
                 { label: 'View Institutions', to: '/institutions' },
+              ]}
+            />
+            <SidebarItem
+              icon={<BsClipboard2Check/>}
+              label="examinations"
+              isSidebarOpen={isSidebarOpen}
+              hasChildren
+              isExpanded={openMenus['examinations']}
+              onToggle={() => toggleMenu('examinations')}
+              childrenItems={[
+                { label: 'Create Examinations', to: 'exam/create' },
+                { label: 'View Examinations', to: '/examinations' },
               ]}
             />
             <SidebarItem
