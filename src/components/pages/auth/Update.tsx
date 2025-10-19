@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 const Update: React.FC = () => {
   const {token} = useParams()
   const validateToken = async(token:string):Promise<boolean>=>{
+    console.log(token)
     return true
   }
   useEffect(()=>{
