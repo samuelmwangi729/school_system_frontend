@@ -21,7 +21,6 @@ const Students: React.FC = () => {
     const fetchStudents = async () => {
         try {
             const response = await getData<Student[] | any>('/students');
-            console.log(response)
             setStudents(response.data);
         } catch (err) {
             setError('Failed to fetch students');

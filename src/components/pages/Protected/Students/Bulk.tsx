@@ -3,7 +3,7 @@ import React from 'react'
 const Bulk:React.FC = () => {
   return (
     <div>
-      Add bulk students here
+      Add bulk students here. for a later update
     </div>
   )
 }

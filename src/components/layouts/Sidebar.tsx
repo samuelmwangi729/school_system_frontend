@@ -16,6 +16,7 @@ import persistStore from 'redux-persist/es/persistStore'
 import store from '../../redux/store'
 import {
   BsBank,
+  BsBookmark,
   BsBuilding,
   BsClipboard2Check,
   BsList,
@@ -77,20 +78,18 @@ const menuItems = [
     ],
   },
   {
-    label: 'User Management',
-    icon: <FaUser />,
+    label: 'Results',
+    icon: <BsBookmark />,
     children: [
-      { label: 'All Users', to: '/users' },
-      { label: 'Add User', to: '/users/new' },
-      { label: 'Roles', to: '/users/roles' },
+      { label: 'Add Results', to: 'results/add' },
+      { label: 'View Results', to: '/results' },
     ],
   },
   {
     label: 'Settings',
     icon: <FaCog />,
     children: [
-      { label: 'Profile Settings', to: '/settings/profile' },
-      { label: 'System Preferences', to: '/settings/system' },
+      { label: 'Profile Settings', to: '/profile' },
     ],
   },
 ]

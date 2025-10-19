@@ -59,7 +59,6 @@ const Teachers: React.FC = () => {
             <h2 className="text-2xl font-bold text-center mb-6">Add Teacher</h2>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                {/* Institution Name */}
                 <div>
                     <label className="block text-sm font-medium text-gray-700">Institution Name</label>
                     <input
@@ -71,8 +70,6 @@ const Teachers: React.FC = () => {
                         <p className="text-sm text-red-600">{errors.institution_name.message}</p>
                     )}
                 </div>
-
-                {/* Teacher Name */}
                 <div>
                     <label className="block text-sm font-medium text-gray-700">Teacher Name</label>
                     <input
@@ -84,8 +81,6 @@ const Teachers: React.FC = () => {
                         <p className="text-sm text-red-600">{errors.teacher_name.message}</p>
                     )}
                 </div>
-
-                {/* Subject Name */}
                 <div>
                     <label className="block text-sm font-medium text-gray-700">Subject Name</label>
                     <input
@@ -97,8 +92,6 @@ const Teachers: React.FC = () => {
                         <p className="text-sm text-red-600">{errors.subject_name.message}</p>
                     )}
                 </div>
-
-                {/* Class Code */}
                 <div>
                     <label className="block text-sm font-medium text-gray-700">Class Code</label>
                     <input
@@ -110,8 +103,6 @@ const Teachers: React.FC = () => {
                         <p className="text-sm text-red-600">{errors.class_code.message}</p>
                     )}
                 </div>
-
-                {/* Submit Button */}
                 <button
                     type="submit"
                     className={`w-full text-white py-2 rounded-md bg-primary hover:bg-red-700`}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getData, putData } from '../../../../utils/useAxios' // adjust path
+import { getData, putData } from '../../../../utils/useAxios' 
 import { toast } from 'react-toastify'
 import type { statusTypes } from '../Examinations/Examinations';
 
@@ -21,7 +21,7 @@ const Subjects: React.FC = () => {
         setError(null)
 
         try {
-            const response: any = await getData('/subjects') // Adjust API path
+            const response: any = await getData('/subjects') 
             const data = Array.isArray(response) ? response : response.data
 
             if (!Array.isArray(data)) {

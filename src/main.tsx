@@ -36,6 +36,9 @@ import Profile from './components/pages/Protected/Profile.tsx';
 import Bulk from './components/pages/Protected/Students/Bulk.tsx';
 import Student from './components/pages/Protected/Students/Student.tsx';
 import Students from './components/pages/Protected/Students/Students.tsx';
+import Results from './components/pages/Protected/Results/Results.tsx';
+import AddResults from './components/pages/Protected/Results/AddResults.tsx';
+import BulkResults from './components/pages/Protected/Results/BulkResults.tsx';
 const router = createBrowserRouter([
   {
     element: (
@@ -152,9 +155,23 @@ const router = createBrowserRouter([
         path:'students/add/bulk',
         element:<Bulk/>
       },
+      {
+        path:'results',
+        element:<Results/>
+      },
+      {
+        path:'results/add',
+        element:<AddResults/>
+      },
+      {
+        path:'results/add/bulk',
+        element:<BulkResults/>
+      },
     ]
   }
 ])
+//this is the root of the state management in the app
+//gave me headache for days hehe
 createRoot(document.getElementById('root')!).render(
   <PersistGate loading={null} persistor={persistStore(store)}>
     <Provider store={store}>

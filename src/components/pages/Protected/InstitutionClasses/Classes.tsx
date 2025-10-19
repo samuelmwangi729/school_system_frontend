@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getData } from '../../../../utils/useAxios' // Adjust path if needed
+import { getData } from '../../../../utils/useAxios'
 import type { statusTypes } from '../Examinations/Examinations'
 import { toast } from 'react-toastify'
 

@@ -50,7 +50,6 @@ const CreateClasses: React.FC = () => {
                 onSubmit={handleSubmit(onSubmit)}
                 className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 space-y-5"
             >
-                {/* Institution Name */}
                 <div>
                     <label htmlFor="institution_name" className="block text-sm font-medium text-gray-700">
                         Institution Name
@@ -63,7 +62,6 @@ const CreateClasses: React.FC = () => {
                     />
                     {errors.institution_name && <p className="text-red-600 text-sm mt-1">{errors.institution_name.message}</p>}
                 </div>
-                {/* Class Name */}
                 <div>
                     <label htmlFor="class_name" className="block text-sm font-medium text-gray-700">
                         Class Name
@@ -77,7 +75,6 @@ const CreateClasses: React.FC = () => {
                     {errors.class_name && <p className="text-red-600 text-sm mt-1">{errors.class_name.message}</p>}
                 </div>
 
-                {/* Class Code */}
                 <div>
                     <label htmlFor="class_code" className="block text-sm font-medium text-gray-700">
                         Class Code

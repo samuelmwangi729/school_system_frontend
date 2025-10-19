@@ -1,6 +1,6 @@
 import{combineReducers, configureStore} from '@reduxjs/toolkit'
 import userReducer from './userSlice'
-import storage from 'redux-persist/lib/storage' // defaults to localStorage
+import storage from 'redux-persist/lib/storage' 
 import { persistReducer,FLUSH,
   REHYDRATE,
   PAUSE,
@@ -13,7 +13,7 @@ const persistConfig = {
   key: 'root',
   version:1,
   storage,
-  whitelist: ['user'] // only persist the 'user' slice
+  whitelist: ['user']
 }
 
 const baseReducers = combineReducers({
@@ -26,7 +26,6 @@ const store = configureStore({
     middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        // ✅ Ignore redux-persist action types
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
       }
     })

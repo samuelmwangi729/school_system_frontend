@@ -6,7 +6,6 @@ const Contact: React.FC = () => {
     <section className="min-h-screen bg-gray-100 py-12 px-6">
       <div className="container mx-auto max-w-6xl bg-white rounded-lg shadow-xl p-10 grid grid-cols-1 md:grid-cols-2 gap-12">
 
-        {/* Left: Contact Info */}
         <div className="flex flex-col justify-center space-y-8">
           <h2 className="text-4xl font-extrabold text-gray-900 leading-tight text-primary">
             Get in Touch
@@ -35,7 +34,7 @@ const Contact: React.FC = () => {
               <div>
                 <p className="text-lg font-semibold">Phone</p>
                 <a href="tel:+15551234567" className="text-primary hover:underline">
-                  +1 (555) 123-4567
+                  +254 (712) 123-4567
                 </a>
               </div>
             </div>
@@ -47,14 +46,13 @@ const Contact: React.FC = () => {
               <div>
                 <p className="text-lg font-semibold">Address</p>
                 <address className="not-italic text-gray-700">
-                  1234 Edu Lane, Smart City, World 56789
+                  1234 Nakuru Street, Nakuru City, Kenya.
                 </address>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Right: Contact Form */}
         <div className="flex flex-col justify-center">
           <h3 className="text-3xl font-semibold text-gray-900 mb-8 text-primary">Send Us a Message</h3>
           <form className="space-y-6" onSubmit={e => e.preventDefault()}>

@@ -13,8 +13,8 @@ const ResetPassword: React.FC = () => {
   } = useForm<ResetPasswordForm>();
 
   const onSubmit: SubmitHandler<ResetPasswordForm> = (data) => {
+    //for later update
     console.log('Reset link requested for:', data.email);
-    // You can send this to your backend via fetch/axios
   };
 
   return (
@@ -23,7 +23,6 @@ const ResetPassword: React.FC = () => {
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Reset Password</h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          {/* Email Input */}
           <div>
             <label className="block text-sm font-medium text-gray-700">Email Address</label>
             <input
@@ -42,7 +41,6 @@ const ResetPassword: React.FC = () => {
             )}
           </div>
 
-          {/* Submit Button */}
           <button
             type="submit"
             className="w-full bg-primary text-white py-2 rounded-md transition duration-300"

@@ -21,7 +21,6 @@ const CreateInstitution: React.FC = () => {
   } = useForm<InstitutionType>()
 
   const addInstitution: SubmitHandler<InstitutionType> = async (data) => {
-    //post the data to the backend
     const response = await postData("/institutions", data)
     if (response.status === "success") {
       toast.success(response.message)
@@ -43,7 +42,6 @@ const CreateInstitution: React.FC = () => {
       <h2 className="text-2xl font-bold text-center mb-6">Create Institution</h2>
 
       <form onSubmit={handleSubmit(addInstitution)} className="space-y-4 bg-white p-6 rounded shadow">
-        {/* Institution Name */}
         <div className="flex flex-col">
           <label htmlFor="name" className="text-sm font-medium mb-1">
             Institution Name
@@ -58,7 +56,6 @@ const CreateInstitution: React.FC = () => {
           {errors.name && <span className="text-sm text-red-600">{errors.name.message}</span>}
         </div>
 
-        {/* Subcounty */}
         <div className="flex flex-col">
           <label htmlFor="subcounty" className="text-sm font-medium mb-1">
             Subcounty
@@ -71,8 +68,6 @@ const CreateInstitution: React.FC = () => {
           />
           {errors.subcounty && <span className="text-sm text-red-600">{errors.subcounty.message}</span>}
         </div>
-
-        {/* County */}
         <div className="flex flex-col">
           <label htmlFor="county" className="text-sm font-medium mb-1">
             County
@@ -86,7 +81,6 @@ const CreateInstitution: React.FC = () => {
           {errors.county && <span className="text-sm text-red-600">{errors.county.message}</span>}
         </div>
 
-        {/* Category */}
         <div className="flex flex-col">
           <label htmlFor="category" className="text-sm font-medium mb-1">
             School Category
@@ -104,7 +98,6 @@ const CreateInstitution: React.FC = () => {
           {errors.category && <span className="text-sm text-red-600">{errors.category.message}</span>}
         </div>
 
-        {/* Institution Type */}
         <div className="flex flex-col">
           <label htmlFor="institutionType" className="text-sm font-medium mb-1">
             Institution Type
@@ -122,8 +115,6 @@ const CreateInstitution: React.FC = () => {
             <span className="text-sm text-red-600">{errors.institutionType.message}</span>
           )}
         </div>
-
-        {/* Student Gender */}
         <div className="flex flex-col">
           <label htmlFor="studentGender" className="text-sm font-medium mb-1">
             Student Gender
@@ -142,8 +133,6 @@ const CreateInstitution: React.FC = () => {
             <span className="text-sm text-red-600">{errors.studentGender.message}</span>
           )}
         </div>
-
-        {/* Submit Button */}
         <div className="pt-4">
           <button
             type="submit"

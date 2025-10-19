@@ -15,3 +15,5 @@ const MainLayout: React.FC = () => {
 };
 
 export default MainLayout;
+
+//layout for the logged in users

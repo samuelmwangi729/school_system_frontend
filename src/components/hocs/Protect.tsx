@@ -10,3 +10,8 @@ const Protect: React.FC<{ children: JSX.Element }> = ({ children }) => {
 };
 
 export default Protect;
+
+// the components makes sure you 
+// dont access protected routes
+// if no cookies available , then 
+// you are to login

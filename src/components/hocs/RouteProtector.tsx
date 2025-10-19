@@ -10,7 +10,7 @@ type RouteProtectorProps = {
 };
 
 const RouteProtector: React.FC<RouteProtectorProps> = ({ roles, children }) => {
-  const user = useAppSelector(selectUserDetails) || {}; // Ensure isAuthenticated is used
+  const user = useAppSelector(selectUserDetails) || {};
   if (!user.loggedIn) {
     return <Navigate to="/login" replace />;
   }
@@ -22,6 +22,7 @@ const RouteProtector: React.FC<RouteProtectorProps> = ({ roles, children }) => {
   }
   //check  the other roles later
   // Render children if all checks pass
+  //for a later update!!
   return <>{children}</>;
 };
 

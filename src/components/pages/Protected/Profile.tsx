@@ -19,14 +19,12 @@ const Profile: React.FC = () => {
         </h2>
 
         <div className="bg-white bg-opacity-90 backdrop-blur-lg shadow-xl rounded-xl p-8 md:flex md:items-center md:space-x-10 transition-transform hover:scale-[1.01]">
-          {/* Profile Picture */}
           <div className="flex justify-center md:justify-start mb-6 md:mb-0">
             <div className="w-36 h-36 rounded-full bg-gradient-to-tr from-indigo-200 to-purple-200 shadow-inner flex items-center justify-center text-6xl text-indigo-700">
               <FaUser />
             </div>
           </div>
 
-          {/* Info */}
           <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-6 text-gray-700">
             <InfoItem icon={<FaUser className="text-blue-600" />} label="Name" value={user?.first_name ?? 'N/A'} />
             <InfoItem icon={<FaEnvelope className="text-green-600" />} label="Username / Email" value={user?.username ?? 'N/A'} />

@@ -12,9 +12,9 @@ type Project = {
   id: number;
   title: string;
   img: string;
-  bullets: string[]; // ~5 lines
+  bullets: string[];
   role: string;
-  tags: string[]; // tech + label like "Pentest"
+  tags: string[];
   link?: string;
   featured?: boolean;
 };
@@ -175,7 +175,6 @@ const Portfolio: React.FC = () => {
   return (
     <section className="bg-white text-gray-900 py-12">
       <div className="container mx-auto px-6 max-w-7xl">
-        {/* Header */}
         <header className="mb-10 text-center">
           <h1 className="text-3xl md:text-4xl font-bold text-primary">
             Portfolio — Selected Projects
@@ -184,8 +183,6 @@ const Portfolio: React.FC = () => {
             A curated selection of platforms, tools, and security engagements We personally built or led. Each entry highlights impact, technical choices, and the value delivered to stakeholders.
           </p>
         </header>
-
-        {/* Controls / Summary */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
           <div className="flex items-center gap-4">
             <Badge variant="bg-primary text-white">Full Stack</Badge>
@@ -197,8 +194,6 @@ const Portfolio: React.FC = () => {
             15 projects • web, mobile, infra, and security engagements
           </div>
         </div>
-
-        {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((p) => (
             <article
@@ -247,8 +242,6 @@ const Portfolio: React.FC = () => {
             </article>
           ))}
         </div>
-
-        {/* CTA */}
         <div className="mt-10 bg-primary text-white rounded-lg p-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div>
             <h4 className="text-xl font-semibold">Interested in working together?</h4>

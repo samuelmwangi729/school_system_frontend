@@ -42,7 +42,7 @@ const Features: React.FC = () => {
               <li
                 key={idx}
                 className="hover:underline transition duration-300 cursor-pointer"
-                tabIndex={0} // makes it keyboard accessible
+                tabIndex={0}
               >
                 {feature}
               </li>

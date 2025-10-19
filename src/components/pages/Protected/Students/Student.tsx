@@ -53,7 +53,6 @@ const Student: React.FC = () => {
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                 <div className='flex justify-between items-center gap-5 w-full'>
-                    {/* First Name */}
                     <div className='w-1/2'>
                         <label className="block text-sm font-medium text-gray-700">First Name</label>
                         <input
@@ -64,8 +63,6 @@ const Student: React.FC = () => {
                             <p className="text-red-600 text-sm">{errors.first_name.message}</p>
                         )}
                     </div>
-
-                    {/* Last Name */}
                     <div className='w-1/2'>
                         <label className="block text-sm font-medium text-gray-700">Last Name</label>
                         <input
@@ -77,8 +74,6 @@ const Student: React.FC = () => {
                         )}
                     </div>
                 </div>
-
-                {/* Username */}
                 <div>
                     <label className="block text-sm font-medium text-gray-700">Username</label>
                     <input
@@ -89,7 +84,6 @@ const Student: React.FC = () => {
                         <p className="text-red-600 text-sm">{errors.username.message}</p>
                     )}
                 </div>
-                {/* Institution Name */}
                 <div>
                     <label className="block text-sm font-medium text-gray-700">Institution</label>
                     <input
@@ -101,7 +95,6 @@ const Student: React.FC = () => {
                     )}
                 </div>
 
-                {/* Class Code */}
                 <div>
                     <label className="block text-sm font-medium text-gray-700">Class Code</label>
                     <input
@@ -113,7 +106,6 @@ const Student: React.FC = () => {
                     )}
                 </div>
 
-                {/* Submit Button */}
                 <div>
                     <button
                         type="submit"

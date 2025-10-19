@@ -24,7 +24,6 @@ const Header: React.FC = () => {
   }
   return (
     <header className="sticky top-0 z-50 w-full bg-white shadow-md">
-      {/* Use relative so the dropdown stays inside header background */}
       <nav className="relative flex items-center justify-between mx-auto px-2 md:px-6 py-3">
         <div>
           <NavLink
@@ -35,7 +34,6 @@ const Header: React.FC = () => {
             <img src={Logo} alt="Scholarvio Logo" />
           </NavLink>
         </div>
-        {/* Desktop Navigation */}
         <ul className="hidden md:flex items-center gap-2 lg:gap-6 font-medium text-lg">
           <li>
             <NavLink to="/about" className={navLinkClass}>
@@ -91,7 +89,6 @@ const Header: React.FC = () => {
 
         </ul>
 
-        {/* Mobile Menu Icon */}
         <button
           className="md:hidden text-3xl text-[#8071F2] focus:outline-none"
           onClick={handleMenuToggle}
@@ -99,7 +96,6 @@ const Header: React.FC = () => {
           {menuOpen ? <HiX /> : <HiMenu />}
         </button>
 
-        {/* Mobile Dropdown Menu */}
         {menuOpen && (
           <div className="absolute top-full left-0 w-full bg-white shadow-lg border-t border-gray-200 transition-all duration-300 md:hidden">
             <ul className="flex flex-col items-center gap-4 py-4 font-medium text-lg">

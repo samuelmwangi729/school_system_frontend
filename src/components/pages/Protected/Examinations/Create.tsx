@@ -49,7 +49,6 @@ const Create: React.FC = () => {
                 onSubmit={handleSubmit(onSubmit)}
                 className="bg-white shadow-md rounded px-8 pt-6 pb-8 space-y-5"
             >
-                {/* Institution Name */}
                 <div>
                     <label className="block text-gray-700 text-sm font-medium mb-1">
                         Institution Name
@@ -79,7 +78,6 @@ const Create: React.FC = () => {
                     )}
                 </div>
 
-                {/* Submit */}
                 <div className="pt-4">
                     <button
                         type="submit"

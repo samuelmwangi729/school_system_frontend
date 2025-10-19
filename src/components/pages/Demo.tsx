@@ -58,7 +58,6 @@ const Demo: React.FC = () => {
           </form>
         </div>
 
-        {/* Right: Image Section */}
         <div className="hidden md:block">
           <img
             src={DemoImg}

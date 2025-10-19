@@ -2,16 +2,15 @@ import React from 'react';
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 import Logo from '../../assets/images/logo.png'
+import { HiHeart } from 'react-icons/hi';
 const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-700 text-white py-10">
       <div className="w-[80%] m-auto mt-5 px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
         
-        {/* Brand */}
         <div>
           <NavLink
             to="/"
-            className=""
           >
             <img src={Logo} alt="Scholarvio Logo" className='h-20 w-30'  />
           </NavLink>
@@ -20,7 +19,6 @@ const Footer: React.FC = () => {
           </p>
         </div>
 
-        {/* Navigation */}
         <div>
           <h3 className="text-lg font-semibold mb-4 text-primary">Quick Links</h3>
           <ul className="space-y-2 text-sm text-gray-300">
@@ -31,7 +29,6 @@ const Footer: React.FC = () => {
           </ul>
         </div>
 
-        {/* Social Media */}
         <div>
           <h3 className="text-lg font-semibold mb-4 text-primary">Follow Us</h3>
           <div className="flex space-x-4">
@@ -45,7 +42,7 @@ const Footer: React.FC = () => {
               <span>
                 Subscribe to  our newsletter
               </span>
-              <input type="text" placeholder='enter your email here' className='border bg-white text-black placeholder:text-black px-2' />
+              <input type="text" placeholder='enter your email here' className='border bg-white text-black placeholder:text-black px-2 py-1 rounded-md' />
               <button className='bg-primary'>
                 Subscribe
               </button>
@@ -55,8 +52,8 @@ const Footer: React.FC = () => {
       </div>
 
       <div className="mt-10 border-t border-white pt-6 text-center text-sm text-gray-500">
-        <div>
-          © {new Date().getFullYear()} Scholarvio. All rights reserved. made with love by Mwangi S.
+        <div className='flex justify-center items-center'>
+          © {new Date().getFullYear()} Scholarvio. All rights reserved. made with <span className='text-red-600 px-2 text-xl'><HiHeart/></span> by Mwangi S.
         </div>
       </div>
     </footer>

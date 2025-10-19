@@ -4,15 +4,12 @@ import Team from '../../assets/images/team.jpg'
 const About: React.FC = () => {
   return (
     <section className="bg-white text-gray-800">
-      {/* Hero Section */}
       <div className="bg-primary text-white py-16 px-6 text-center">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">About Scholarvio</h1>
         <p className="text-lg md:text-xl max-w-2xl mx-auto">
           Simplifying education management through secure, intuitive, and powerful software solutions.
         </p>
       </div>
-
-      {/* Who We Are Section */}
       <div className="py-16 px-6 container mx-auto grid md:grid-cols-2 gap-10 items-center">
         <div>
           <img
@@ -29,8 +26,6 @@ const About: React.FC = () => {
           </p>
         </div>
       </div>
-
-      {/* Why Choose Us Section */}
       <div className="bg-gray-50 py-16 px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-primary">Why Choose Scholarvio?</h2>
@@ -63,8 +58,6 @@ const About: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* CTA Section */}
       <div className="bg-primary text-white py-16 px-6 text-center">
         <h2 className="text-3xl font-bold mb-4">Ready to modernize your school?</h2>
         <p className="mb-6 max-w-xl mx-auto">

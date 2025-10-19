@@ -53,7 +53,6 @@ const CreateSubject: React.FC = () => {
                 onSubmit={handleSubmit(onSubmit)}
                 className="bg-white shadow-md rounded px-8 py-6 space-y-5"
             >
-                {/* Institution Name */}
                 <div className="flex flex-col">
                     <label htmlFor="institution_name" className="mb-1 text-sm font-medium">
                         Institution Name
@@ -69,7 +68,6 @@ const CreateSubject: React.FC = () => {
                     )}
                 </div>
 
-                {/* Subject Code */}
                 <div className="flex flex-col">
                     <label htmlFor="subject_code" className="mb-1 text-sm font-medium">
                         Subject Code
@@ -88,8 +86,6 @@ const CreateSubject: React.FC = () => {
                         <span className="text-sm text-red-600">{errors.subject_code.message}</span>
                     )}
                 </div>
-
-                {/* Subject Name */}
                 <div className="flex flex-col">
                     <label htmlFor="subject_name" className="mb-1 text-sm font-medium">
                         Subject Name

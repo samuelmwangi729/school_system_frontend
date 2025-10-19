@@ -39,7 +39,6 @@ axiosInstance.interceptors.request.use(
       }
     }
 
-    // Try refresh
     try {
       const { data } = await axios.post(`${backendUrl}/token/refresh`, {
         refresh: refreshToken,
@@ -62,9 +61,6 @@ axiosInstance.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// ================================
-// ✅ API METHODS
-// ================================
 type ApiResponse<T = any> = {
   status: 'success' | 'error';
   message: string;

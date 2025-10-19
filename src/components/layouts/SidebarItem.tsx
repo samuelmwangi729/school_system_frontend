@@ -48,7 +48,6 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
         </NavLink>
       )}
 
-      {/* Animated children */}
       <AnimatePresence initial={false}>
         {isExpanded && isSidebarOpen && (
           <motion.div
@@ -80,3 +79,4 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
 }
 
 export default SidebarItem
+// the sidebar component

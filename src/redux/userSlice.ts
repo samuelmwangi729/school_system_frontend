@@ -42,11 +42,10 @@ const initialState: UserState = {
     loading: false,
 };
 
-// Thunk to log in a user
 export const loginUser = createAsyncThunk<
     any, // return type
-    { email: string; password: string }, // argument type
-    { rejectValue: string } // error type
+    { email: string; password: string }, 
+    { rejectValue: string } 
 >("login/user", async (userData, { rejectWithValue }) => {
     try {
         const resp = await plainRequest("/login", userData);
@@ -140,5 +139,4 @@ const userSlice = createSlice({
 export const selectUserDetails = (state: RootState) => state.user.userDetails;
 export const selectAppState = (state: RootState) => state.user.loading;
 export const { logoutUser } = userSlice.actions
-// Export reducer
 export default userSlice.reducer;

@@ -15,3 +15,4 @@ const Base: React.FC = () => {
 };
 
 export default Base;
+//layout for the users not logged in
